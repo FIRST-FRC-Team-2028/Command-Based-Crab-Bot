@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
     	
     	drive = new Drivetrain();
     	
-    	crabCom = new CrabCommand(oneStSick);
+    	crabCom = new CrabCommand(oneStick);
     	
     	crabTrigger = new CrabTrigger(oneStick,crabCom);
     	
