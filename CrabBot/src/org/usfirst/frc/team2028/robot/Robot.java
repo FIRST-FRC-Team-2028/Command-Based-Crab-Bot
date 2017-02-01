@@ -49,8 +49,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drive;
 	
     public Robot() {
-//    	stick = new Joystick(1);
-//    	potStick = new Joystick(4);
+//    	stick = new Joystick(1); 
     	oneStick = new Joystick(5);
     	
     	drive = new Drivetrain();

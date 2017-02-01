@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2028.robot.component;
 
-import org.usfirst.frc.team2028.robot.Parameters;
 import org.usfirst.frc.team2028.robot.Parameters.CanId;
 
 import com.ctre.CANTalon;
