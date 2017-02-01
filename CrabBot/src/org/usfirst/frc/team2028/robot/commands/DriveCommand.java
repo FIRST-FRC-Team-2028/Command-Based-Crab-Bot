@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2028.robot.commands;
 
+import org.usfirst.frc.team2028.robot.Parameters.Buttons;
 import org.usfirst.frc.team2028.robot.Robot;
+import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,14 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CrabCommand extends Command {
+public class DriveCommand extends Command {
 
 	Joystick stick;
+	Drivetrain drive;
 	
-    public CrabCommand(Joystick stick) {
+    public DriveCommand(Joystick stick) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drive);
+    	drive = Robot.drive;
     	this.stick = stick;
     }
 
@@ -26,7 +30,18 @@ public class CrabCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double[] polar = getPolarCoords();
-    	Robot.drive.crabDrive(polar[0],polar[1]);
+    	if(isButtonPressed(Buttons.SWEARVE))
+    	{
+    		drive.swerveDrive(polar[0], polar[1]);
+    	}
+    	else if(isButtonPressed(Buttons.SPIN_ON_AXIS))
+    	{
+    		drive.spinOnAxis(polar[1]);
+    	}
+    	else
+    	{
+    		Robot.drive.crabDrive(polar[0],polar[1]);
+    	}
     	
     }
 
@@ -41,6 +56,11 @@ public class CrabCommand extends Command {
     	double volts = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
     	
     	return new double[] {degrees,volts};
+    }
+    
+    public boolean isButtonPressed(Buttons b)
+    {
+    	return stick.getRawButton(b.getID());
     }
     
     public double normalizeInput(double pos)

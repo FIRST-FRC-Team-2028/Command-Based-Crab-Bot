@@ -2,8 +2,7 @@
 package org.usfirst.frc.team2028.robot;
 
 
-import org.usfirst.frc.team2028.robot.Triggers.CrabTrigger;
-import org.usfirst.frc.team2028.robot.commands.CrabCommand;
+import org.usfirst.frc.team2028.robot.commands.DriveCommand;
 import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -42,9 +41,8 @@ public class Robot extends IterativeRobot {
 	boolean oneStickDriving = true;
 	Joystick stick,potStick,oneStick;
 	
-	public static CrabTrigger crabTrigger;
 	
-	public static CrabCommand crabCom;
+	public static DriveCommand driveComm;
 	
 	public static Drivetrain drive;
 	
@@ -52,11 +50,10 @@ public class Robot extends IterativeRobot {
 //    	stick = new Joystick(1); 
     	oneStick = new Joystick(5);
     	
-    	drive = new Drivetrain();
+    	drive = new Drivetrain(driveComm);
     	
-    	crabCom = new CrabCommand(oneStick);
+    	driveComm = new DriveCommand(oneStick);
     	
-    	crabTrigger = new CrabTrigger(oneStick,crabCom);
     	
     	comp = new Compressor();
     	comp.setClosedLoopControl(true);

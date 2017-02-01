@@ -4,6 +4,7 @@ import org.usfirst.frc.team2028.robot.Parameters;
 import org.usfirst.frc.team2028.robot.component.DriveSide;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -13,8 +14,12 @@ public class Drivetrain extends Subsystem {
 
     private Solenoid lowGear,highGear;
     
-    public Drivetrain()
+    private Command defaultCommand;
+    
+    public Drivetrain(Command defaultCommand)
     {
+    	this.defaultCommand = defaultCommand;
+    	
     	leftSide = new DriveSide(Parameters.SideOfRobot.LEFT);
     	rightSide = new DriveSide(Parameters.SideOfRobot.RIGHT);
     	
@@ -67,7 +72,12 @@ public class Drivetrain extends Subsystem {
     }
     
     @Override
-    protected void initDefaultCommand() {
+    protected void initDefaultCommand() 
+    {
+    	if(defaultCommand != null)
+    	{
+    		this.setDefaultCommand(defaultCommand);
+    	}
     }
 
 }
