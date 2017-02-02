@@ -62,11 +62,12 @@ public class DriveSide {
     
     public void swerveDrive(double angle, double speed)
     {
+    	System.out.println(side + " angle: "+angle);
     	switch(side)
     	{
     	case LEFT:
-    		frontWheel.setPosition(angle);
-    		rearWheel.setPosition(-angle);
+    		frontWheel.setPosition(-angle);
+    		rearWheel.setPosition(angle);
     		break;
     	case RIGHT:
     		frontWheel.setPosition(-angle);

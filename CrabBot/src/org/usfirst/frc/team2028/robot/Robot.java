@@ -8,6 +8,8 @@ import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -54,7 +56,8 @@ public class Robot extends IterativeRobot {
     	
     	driveComm = new DriveCommand(oneStick);
     	
-    	
+    	drive.setDefaultCommand(driveComm);
+    	    	
     	comp = new Compressor();
     	comp.setClosedLoopControl(true);
     	
@@ -77,38 +80,61 @@ public class Robot extends IterativeRobot {
 //        high.set(false);
 //        low.set(true);
         
+    	driveComm.start();
+    	
         SmartDashboard.putNumber("Steering P", p);
         SmartDashboard.putNumber("Steering I", i);
         SmartDashboard.putNumber("Steering D", d);
         SmartDashboard.putNumber("Steering Position Setpoint", pos);
     }
     
+    @Override
     public void robotInit() {
     }
 
+    @Override
     public void autonomousInit() {
+    	System.out.println("Auto init");
     }
 
+    @Override
     public void teleopInit() {
-    	comp.start();
+    	System.out.println("Tele init");
+
+//    	comp.start();
     }
 
+    @Override
     public void autonomousPeriodic() {
+    	System.out.println("Auto per");
+
     }
 
+    @Override
     public void teleopPeriodic() {
+    	Scheduler.getInstance().run();
+    	
+//    	System.out.println("Tele per");
+
+//    	Timer.delay(0.005);
     }
 
-    public void startCompetition() {
+    @Override
+    public void disabledInit() {
+    	System.out.println("Dis init");
+
     }
 
-    public void disableInit() {
-    }
-
+    @Override
     public void robotPeriodic() {
+//    	System.out.println("Robot per");
+
     }
 
-    public void disablePeriodic() {
+    @Override
+    public void disabledPeriodic() {
+//    	System.out.println("Dis per");
+
     }
 //    public void operatorControl() {
 //    	comp.start();

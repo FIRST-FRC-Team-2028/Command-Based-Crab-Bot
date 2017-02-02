@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveCommand extends Command {
 
-	Joystick stick;
-	Drivetrain drive;
+	static Joystick stick;
+	static Drivetrain drive;
 	
     public DriveCommand(Joystick stick) {
         // Use requires() here to declare subsystem dependencies
@@ -21,18 +21,24 @@ public class DriveCommand extends Command {
     	requires(Robot.drive);
     	drive = Robot.drive;
     	this.stick = stick;
+    	System.out.println("got here");
     }
 
     // Called just before this Command runs the first time
+    @Override
     protected void initialize() {
+    	System.out.println("Comm init");
     }
 
     // Called repeatedly when this Command is scheduled to run
+    @Override
     protected void execute() {
     	double[] polar = getPolarCoords();
     	if(isButtonPressed(Buttons.SWEARVE))
     	{
-    		drive.swerveDrive(polar[0], polar[1]);
+    		System.out.println("swearve");
+    		
+    		drive.swerveDrive(-stick.getRawAxis(2), polar[1]);
     	}
     	else if(isButtonPressed(Buttons.SPIN_ON_AXIS))
     	{
@@ -40,8 +46,10 @@ public class DriveCommand extends Command {
     	}
     	else
     	{
-    		Robot.drive.crabDrive(polar[0],polar[1]);
+    		drive.crabDrive(polar[0],polar[1]);
     	}
+    	
+//    	System.out.println("I AM HERE");
     	
     }
 
@@ -55,6 +63,7 @@ public class DriveCommand extends Command {
     	degrees /= 360;
     	double volts = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
     	
+    	System.out.println("Degree: "+degrees);
     	return new double[] {degrees,volts};
     }
     
@@ -76,16 +85,24 @@ public class DriveCommand extends Command {
     }
     
     // Make this return true when this Command no longer needs to run execute()
+    @Override
     protected boolean isFinished() {
+//    	System.out.println("isfinished");
         return false;
     }
 
     // Called once after isFinished returns true
+    @Override
     protected void end() {
+    	System.out.println("end");
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
+    @Override
     protected void interrupted() {
+    	System.out.println("ive been ...");
+
     }
 }

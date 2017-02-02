@@ -32,17 +32,22 @@ public class Drivetrain extends Subsystem {
     
     public void crabDrive(double angle, double speed)
     {
+    	angle += 0.5;
     	leftSide.crabDrive(angle, speed);
     	rightSide.crabDrive(angle, speed);
     }
     
     public void swerveDrive(double angle, double speed)
     {
-    	angle*=0.125;
-		double in = (45.0/360);
-		double out = (16.97/360);
+    	System.out.println("Sw: "+angle);
+//    	angle*=0.125;
+    	angle += 0.5;
+    	System.out.println("SW After: "+angle);
+		double in = (45.0/360.0);
+		double out = (16.97/360.0);
 		if(angle > 0)
 		{
+			System.out.println("here");
 			leftSide.swerveDrive(angle*in, speed);
 			rightSide.swerveDrive(angle*out, speed);
 		}
@@ -71,12 +76,19 @@ public class Drivetrain extends Subsystem {
     	highGear.set(true);
     }
     
+    public void setDefaultCommand(Command command)
+    {
+    	defaultCommand = command;
+    	System.out.println("Default");
+    }
+    
     @Override
     protected void initDefaultCommand() 
     {
     	if(defaultCommand != null)
     	{
-    		this.setDefaultCommand(defaultCommand);
+    		System.out.println("InitDef");
+    		setDefaultCommand(defaultCommand);
     	}
     }
 

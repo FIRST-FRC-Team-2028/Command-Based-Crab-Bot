@@ -58,14 +58,14 @@ public class Wheel
 		currentRev = constRev+pos;
 		prevRev = constRev-1.0+pos;
 		
-		System.out.println("Motor: "+canId);
-		System.out.println("Goal: "+pos);
-		System.out.println("Const: "+constRev);
-		System.out.println("Current pos"+currentpos);
-		System.out.println("Next rotg"+nextRev);
-		System.out.println("Current rotg"+currentRev);
-		System.out.println("Prev rotg"+prevRev);
-		System.out.println("-------------------------------");
+//		System.out.println("Motor: "+canId);
+//		System.out.println("Goal: "+pos);
+//		System.out.println("Const: "+constRev);
+//		System.out.println("Current pos"+currentpos);
+//		System.out.println("Next rotg"+nextRev);
+//		System.out.println("Current rotg"+currentRev);
+//		System.out.println("Prev rotg"+prevRev);
+//		System.out.println("-------------------------------");
 
 		double dnext = Math.abs(nextRev-currentpos);
 		double dcurr = Math.abs(currentRev-currentpos);
