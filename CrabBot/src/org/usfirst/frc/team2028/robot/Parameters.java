@@ -35,10 +35,10 @@ public class Parameters {
     }
 
     public enum SteeringOffset {
-        LEFT_FRONT (0.18),
-        LEFT_REAR (-0.03),
-        RIGHT_FRONT (0.7),
-        RIGHT_REAR (0.00);
+        LEFT_FRONT (-0.32), //20
+        LEFT_REAR (0.47), //31
+        RIGHT_FRONT (0.21), //44
+        RIGHT_REAR (0.49); //22
 
         private double offset;
 

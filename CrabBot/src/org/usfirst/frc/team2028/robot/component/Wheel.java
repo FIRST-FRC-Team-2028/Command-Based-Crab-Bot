@@ -43,6 +43,7 @@ public class Wheel
 	
 	public double setPosition(double pos)
 	{
+		System.out.println(toString()+ " pos "+pos);
 		double currentpos = wheelMotor.getPosition()-offset;
 		constRev = (int)currentpos;
 		double nextRev;
@@ -146,5 +147,26 @@ public class Wheel
 		String rc = "";
 		rc += canId+ ": "+getPosition();
 		return rc;
+	}
+
+	public void printNeededOffsets() 
+	{
+//		wheelMotor.setPosition(0.5);
+		double num = wheelMotor.getPosition()-0.5;
+		System.out.println(canId + " offset needed " + num );
+		System.out.println("\t "+getPosition());
+	}
+	
+	public void enableTurning(boolean enable)
+	{
+		if(enable)
+		{
+			wheelMotor.enableControl();
+		}
+		else
+		{
+			System.out.println("Disabled "+canId);
+			wheelMotor.disableControl();
+		}
 	}
 }

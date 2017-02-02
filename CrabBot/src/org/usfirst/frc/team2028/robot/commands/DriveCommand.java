@@ -42,7 +42,7 @@ public class DriveCommand extends Command {
     	}
     	else if(isButtonPressed(Buttons.SPIN_ON_AXIS))
     	{
-    		drive.spinOnAxis(polar[1]);
+    		drive.spinOnAxis(-stick.getRawAxis(2));
     	}
     	else
     	{

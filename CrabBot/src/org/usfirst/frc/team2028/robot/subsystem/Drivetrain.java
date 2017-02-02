@@ -41,20 +41,20 @@ public class Drivetrain extends Subsystem {
     {
     	System.out.println("Sw: "+angle);
 //    	angle*=0.125;
-    	angle += 0.5;
+//    	angle += 0.5;
     	System.out.println("SW After: "+angle);
-		double in = (45.0/360.0);
-		double out = (16.97/360.0);
+		double in = ((45.0/360.0)*angle);
+		double out = ((16.97/360.0)*angle);
 		if(angle > 0)
 		{
 			System.out.println("here");
-			leftSide.swerveDrive(angle*in, speed);
-			rightSide.swerveDrive(angle*out, speed);
+			leftSide.swerveDrive(in, speed);
+			rightSide.swerveDrive(out, speed);
 		}
 		else
 		{
-			leftSide.swerveDrive(angle*out, speed);
-			rightSide.swerveDrive(angle*in, speed);
+			leftSide.swerveDrive(out, speed);
+			rightSide.swerveDrive(in, speed);
 		}
     }
     
@@ -90,6 +90,18 @@ public class Drivetrain extends Subsystem {
     		System.out.println("InitDef");
     		setDefaultCommand(defaultCommand);
     	}
+    }
+    
+    public void printNeededOffsets()
+    {
+    	leftSide.printNeededOffsets();
+    	rightSide.printNeededOffsets();
+    }
+    
+    public void enableTurning(boolean enable)
+    {
+    	leftSide.enableTurngin(enable);
+    	rightSide.enableTurngin(enable);
     }
 
 }

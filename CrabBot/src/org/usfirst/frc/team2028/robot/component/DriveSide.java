@@ -25,14 +25,14 @@ public class DriveSide {
         case RIGHT:
             masterMotor = new CANTalon(CanId.DRIVE_RIGHT_MASTER.getId());
             followerMotor = new CANTalon(CanId.DRIVE_RIGHT_FOLLOWER.getId());
-            frontWheel = new Wheel(CanId.STEERING_RIGHT_FRONT,SteeringOffset.LEFT_FRONT.getOffset());
-            rearWheel = new Wheel(CanId.STEERING_RIGHT_REAR,SteeringOffset.LEFT_REAR.getOffset());
+            frontWheel = new Wheel(CanId.STEERING_RIGHT_FRONT,SteeringOffset.RIGHT_FRONT.getOffset());
+            rearWheel = new Wheel(CanId.STEERING_RIGHT_REAR,SteeringOffset.RIGHT_REAR.getOffset());
             break;
         case LEFT:
             masterMotor = new CANTalon(CanId.DRIVE_LEFT_MASTER.getId());
             followerMotor = new CANTalon(CanId.DRIVE_LEFT_FOLLOWER.getId());
-            frontWheel = new Wheel(CanId.STEERING_LEFT_FRONT, SteeringOffset.RIGHT_FRONT.getOffset());
-            rearWheel = new Wheel(CanId.STEERING_LEFT_REAR,SteeringOffset.RIGHT_REAR.getOffset());
+            frontWheel = new Wheel(CanId.STEERING_LEFT_FRONT, SteeringOffset.LEFT_FRONT.getOffset());
+            rearWheel = new Wheel(CanId.STEERING_LEFT_REAR,SteeringOffset.LEFT_REAR.getOffset());
             break;
         default:
             throw new IllegalArgumentException("Invalid side of robot");
@@ -81,7 +81,27 @@ public class DriveSide {
     
     public void spinOnAxis(double speed)
     {
-    	swerveDrive(0.125,speed);
+    	switch(side)
+    	{
+    	case LEFT:
+    		swerveDrive(-0.125,-speed);
+    		break;
+    	case RIGHT:
+    		swerveDrive(0.125,speed);
+    		break;
+    	default:
+    	}
     }
 
+	public void printNeededOffsets()
+	{
+		frontWheel.printNeededOffsets();
+		rearWheel.printNeededOffsets();
+	}
+
+	public void enableTurngin(boolean enable)
+	{
+		frontWheel.enableTurning(enable);
+		rearWheel.enableTurning(enable);
+	}
 }
