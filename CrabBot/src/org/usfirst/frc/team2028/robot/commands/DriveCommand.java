@@ -33,7 +33,25 @@ public class DriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+//    	Beginning of Copy from Old Crab Command Code
+//    	double[] stickPolar = stick.getInput;
+//    	Robot.drive.crabDrive(stickPolar[0], stickPolar[1]);
+//    	End of Copy from Old Crab Command Code
     	double[] polar = getPolarCoords();
+////    	Beginning of test code
+    	if(-stick.getRawAxis(1) > 1 )
+    	{
+    		drive.crabDrive(0, 1);
+    	}
+    	else if(-stick.getRawAxis(1) < -1 )
+    	{
+    		drive.crabDrive(0, -1);
+    	}
+    	else
+    	{
+    		System.out.println("Blank");
+    	}
+////    	End of test code
     	if(isButtonPressed(Buttons.SWEARVE))
     	{
     		System.out.println("swearve");
@@ -57,7 +75,20 @@ public class DriveCommand extends Command {
     {
     	double x = normalizeInput(stick.getRawAxis(0));
 		double y = normalizeInput(-stick.getRawAxis(1));
-
+//		Beginning of test code
+//    	if(-stick.getRawAxis(1) > 0.1)
+//    	{
+//    		drive.crabDrive(0, 0.25);
+//    	}
+//    	else if(-stick.getRawAxis(1) < -0.1)
+//    	{
+//    		drive.crabDrive(0, -0.25);
+//    	}
+//    	else
+//    	{
+//    		System.out.println("if statement not met.");
+//    	}
+//    	End of test code
 		double degrees = Math.toDegrees(Math.atan2(x,y));
     	degrees += 180;
     	degrees /= 360;
@@ -65,6 +96,7 @@ public class DriveCommand extends Command {
     	
     	System.out.println("Degree: "+degrees);
     	return new double[] {degrees,volts};
+
     }
     
     public boolean isButtonPressed(Buttons b)
