@@ -37,33 +37,6 @@ public class Drivetrain extends Subsystem {
     	rightSide.crabDrive(angle, speed);
     }
     
-    public void swerveDrive(double angle, double speed)
-    {
-    	System.out.println("Sw: "+angle);
-//    	angle*=0.125;
-//    	angle += 0.5;
-    	System.out.println("SW After: "+angle);
-		double in = ((45.0/360.0)*angle);
-		double out = ((16.97/360.0)*angle);
-		if(angle > 0)
-		{
-			System.out.println("here");
-			leftSide.swerveDrive(in, speed);
-			rightSide.swerveDrive(out, speed);
-		}
-		else
-		{
-			leftSide.swerveDrive(out, speed);
-			rightSide.swerveDrive(in, speed);
-		}
-    }
-    
-    public void spinOnAxis(double speed)
-    {
-    	leftSide.spinOnAxis(speed);
-    	rightSide.spinOnAxis(speed);
-    }
-    
     public void setLowGear()
     {
     	highGear.set(false);
