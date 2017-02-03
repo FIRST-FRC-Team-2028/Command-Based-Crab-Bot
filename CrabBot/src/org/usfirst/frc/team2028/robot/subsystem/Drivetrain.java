@@ -30,38 +30,10 @@ public class Drivetrain extends Subsystem {
     	lowGear.set(true);
     }
     
-    public void crabDrive(double angle, double speed)
-    {
-    	angle += 0.5;
-    	leftSide.crabDrive(angle, speed);
-    	rightSide.crabDrive(angle, speed);
-    }
-    
     public void swerveDrive(double angle, double speed)
     {
-    	System.out.println("Sw: "+angle);
-//    	angle*=0.125;
-//    	angle += 0.5;
-    	System.out.println("SW After: "+angle);
-		double in = ((45.0/360.0)*angle);
-		double out = ((16.97/360.0)*angle);
-		if(angle > 0)
-		{
-			System.out.println("here");
-			leftSide.swerveDrive(in, speed);
-			rightSide.swerveDrive(out, speed);
-		}
-		else
-		{
-			leftSide.swerveDrive(out, speed);
-			rightSide.swerveDrive(in, speed);
-		}
-    }
-    
-    public void spinOnAxis(double speed)
-    {
-    	leftSide.spinOnAxis(speed);
-    	rightSide.spinOnAxis(speed);
+    	leftSide.swerveDrive(angle, speed);
+    	rightSide.swerveDrive(angle,speed);
     }
     
     public void setLowGear()
@@ -79,7 +51,6 @@ public class Drivetrain extends Subsystem {
     public void setDefaultCommand(Command command)
     {
     	defaultCommand = command;
-    	System.out.println("Default");
     }
     
     @Override
@@ -87,7 +58,6 @@ public class Drivetrain extends Subsystem {
     {
     	if(defaultCommand != null)
     	{
-    		System.out.println("InitDef");
     		setDefaultCommand(defaultCommand);
     	}
     }

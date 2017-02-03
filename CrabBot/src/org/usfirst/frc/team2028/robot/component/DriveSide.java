@@ -53,44 +53,11 @@ public class DriveSide {
     	followerMotor.set(speed);
     }
     
-    public void crabDrive(double angle, double speed)
+    public void swerveDrive(double angle, double speed)
     {
     	frontWheel.setPosition(angle);
     	rearWheel.setPosition(angle);
     	setSpeed(speed);
-    }
-    
-    public void swerveDrive(double angle, double speed)
-    {
-    	System.out.println(side + " angle: "+angle);
-    	switch(side)
-    	{
-    	case LEFT:
-    		frontWheel.setPosition(-angle);
-    		rearWheel.setPosition(angle);
-    		break;
-    	case RIGHT:
-    		frontWheel.setPosition(-angle);
-    		rearWheel.setPosition(angle);
-    		break;
-    	default:
-    		
-    	}
-    	setSpeed(speed);
-    }
-    
-    public void spinOnAxis(double speed)
-    {
-    	switch(side)
-    	{
-    	case LEFT:
-    		swerveDrive(-0.125,-speed);
-    		break;
-    	case RIGHT:
-    		swerveDrive(0.125,speed);
-    		break;
-    	default:
-    	}
     }
 
 	public void printNeededOffsets()

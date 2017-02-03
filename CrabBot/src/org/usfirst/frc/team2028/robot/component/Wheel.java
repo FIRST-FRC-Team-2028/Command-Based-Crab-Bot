@@ -43,71 +43,13 @@ public class Wheel
 	
 	public double setPosition(double pos)
 	{
-		System.out.println(toString()+ " pos "+pos);
-		double currentpos = wheelMotor.getPosition()-offset;
-		constRev = (int)currentpos;
-		double nextRev;
-		double currentRev;
-		double prevRev;
 		
-		if(currentpos < 0)
-		{
-			constRev-=1;
-		}
-		
-		nextRev = constRev+1.0+pos;
-		currentRev = constRev+pos;
-		prevRev = constRev-1.0+pos;
-		
-//		System.out.println("Motor: "+canId);
-//		System.out.println("Goal: "+pos);
-//		System.out.println("Const: "+constRev);
-//		System.out.println("Current pos"+currentpos);
-//		System.out.println("Next rotg"+nextRev);
-//		System.out.println("Current rotg"+currentRev);
-//		System.out.println("Prev rotg"+prevRev);
-//		System.out.println("-------------------------------");
-
-		double dnext = Math.abs(nextRev-currentpos);
-		double dcurr = Math.abs(currentRev-currentpos);
-		double dprev = Math.abs(prevRev-currentpos);
-//		System.out.println("Next: "+dnext);
-//		System.out.println("Curr: "+dcurr);
-//		System.out.println("Prev: "+dprev);
-		if(dnext < dcurr && dnext < dprev)
-			pos = nextRev;
-		else if(dcurr < dnext && dcurr < dprev)
-			pos = currentRev;
-		else if(dprev < dcurr && dprev < dnext)
-			pos = prevRev;
-//		double d0 = Math.abs((wheelMotor.getPosition()-offset)-constRot);
-//		double d1 = Math.abs((wheelMotor.getPosition()-offset)-(constRot+1));
-		
-		//		if(d1 < d0)
-//		{
-//			System.out.println("here");
-//			constRot++;
-//		}
     	pos +=offset;
-    	
-//	    	System.out.println("Offset: "+pos);
     	pos *= Math.pow(10, 3);
-//	    	System.out.println("AM: "+pos);
     	pos = (int)pos;
-//	    	System.out.println("Int: "+pos);
-    	pos /= Math.pow(10, 3);
-//	    	System.out.println("Div: "+pos);
-    	
+    	pos /= Math.pow(10, 3);    	
     	wheelMotor.set(pos);
-    	return pos;
-//	    wheelMotor.setPosition(pos);
-//	   	{
-//	   	if(wheelMotor != null)
-//	   		wheelMotor.setPosition(0);
-//	  		else
-//   			return pos;
-//		}
-			
+    	return pos;		
 	}
 	
 	public void disableControl()
@@ -126,7 +68,6 @@ public class Wheel
 	
 	public boolean atSetpoint()
     {
-//    	System.out.println(Math.abs(wheelMotor.getPosition()-wheelMotor.getSetpoint()));
     	if(Math.abs(wheelMotor.getPosition()-wheelMotor.getSetpoint()) <= 0.01)
     		return true;
     	return false;
@@ -151,7 +92,6 @@ public class Wheel
 
 	public void printNeededOffsets() 
 	{
-//		wheelMotor.setPosition(0.5);
 		double num = wheelMotor.getPosition()-0.5;
 		System.out.println(canId + " offset needed " + num );
 		System.out.println("\t "+getPosition());
@@ -165,7 +105,6 @@ public class Wheel
 		}
 		else
 		{
-			System.out.println("Disabled "+canId);
 			wheelMotor.disableControl();
 		}
 	}
