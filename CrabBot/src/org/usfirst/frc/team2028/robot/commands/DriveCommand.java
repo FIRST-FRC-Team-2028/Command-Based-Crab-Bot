@@ -6,6 +6,7 @@ import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -90,8 +91,8 @@ public class DriveCommand extends Command {
 //    	}
 //    	End of test code
 		double degrees = Math.toDegrees(Math.atan2(x,y));
-    	degrees += 180;
-    	degrees /= 360;
+    	degrees += 180;     //was 180 not 90
+    	degrees /= 360;     //was 360 not 180
     	double volts = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
     	
     	System.out.println("Degree: "+degrees);

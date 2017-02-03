@@ -6,6 +6,7 @@ import org.usfirst.frc.team2028.robot.component.DriveSide;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Drivetrain extends Subsystem {
@@ -35,6 +36,17 @@ public class Drivetrain extends Subsystem {
     	angle += 0.5;
     	leftSide.crabDrive(angle, speed);
     	rightSide.crabDrive(angle, speed);
+//    	Check this code before testing
+//     	String Current1 = "CurrentFL";
+//     	String Current2 = "CurrentFR";
+//     	String Current3 = "CurrentRL";
+//     	String Current4 = "CurrentRR";
+//    	double current = 0.002;
+//    	SmartDashboard.putNumber(Current1, current);
+//    	SmartDashboard.putNumber(Current2, current);
+//    	SmartDashboard.putNumber(Current3, current);
+//    	SmartDashboard.putNumber(Current4, current);
+//    	Check this code before testing
     }
     
     public void swerveDrive(double angle, double speed)
