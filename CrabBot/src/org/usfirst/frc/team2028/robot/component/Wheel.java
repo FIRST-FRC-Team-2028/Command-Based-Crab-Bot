@@ -6,6 +6,8 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Wheel 
 {
 	CANTalon wheelMotor;
@@ -67,12 +69,13 @@ public class Wheel
 //		System.out.println("Current rotg"+currentRev);
 //		System.out.println("Prev rotg"+prevRev);
 //		System.out.println("-------------------------------");
-
+//		Test
 		double dnext = Math.abs(nextRev-currentpos);
 		double dcurr = Math.abs(currentRev-currentpos);
 		double dprev = Math.abs(prevRev-currentpos);
 //		System.out.println("Next: "+dnext);
-//		System.out.println("Curr: "+dcurr);
+		System.out.println("Curr: "+dcurr);
+		SmartDashboard.putNumber("Curr", wheelMotor.getOutputCurrent());
 //		System.out.println("Prev: "+dprev);
 		if(dnext < dcurr && dnext < dprev)
 			pos = nextRev;

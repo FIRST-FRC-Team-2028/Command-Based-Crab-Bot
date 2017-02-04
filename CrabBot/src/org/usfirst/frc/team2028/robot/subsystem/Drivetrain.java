@@ -42,7 +42,7 @@ public class Drivetrain extends Subsystem {
 //     	String Current3 = "CurrentRL";
 //     	String Current4 = "CurrentRR";
 //    	double current = 0.002;
-//    	SmartDashboard.putNumber(Current1, current);
+//    	SmartDashboard.putNumber(Current1, Wheel.getCurrent);
 //    	SmartDashboard.putNumber(Current2, current);
 //    	SmartDashboard.putNumber(Current3, current);
 //    	SmartDashboard.putNumber(Current4, current);
