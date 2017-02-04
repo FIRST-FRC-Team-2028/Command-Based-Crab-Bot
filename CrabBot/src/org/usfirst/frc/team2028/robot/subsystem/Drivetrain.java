@@ -36,17 +36,6 @@ public class Drivetrain extends Subsystem {
     	angle += 0.5;
     	leftSide.crabDrive(angle, speed);
     	rightSide.crabDrive(angle, speed);
-//    	Check this code before testing
-//     	String Current1 = "CurrentFL";
-//     	String Current2 = "CurrentFR";
-//     	String Current3 = "CurrentRL";
-//     	String Current4 = "CurrentRR";
-//    	double current = 0.002;
-//    	SmartDashboard.putNumber(Current1, Wheel.getCurrent);
-//    	SmartDashboard.putNumber(Current2, current);
-//    	SmartDashboard.putNumber(Current3, current);
-//    	SmartDashboard.putNumber(Current4, current);
-//    	Check this code before testing
     }
     
     public void swerveDrive(double angle, double speed)

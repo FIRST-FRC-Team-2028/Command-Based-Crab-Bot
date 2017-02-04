@@ -39,20 +39,6 @@ public class DriveCommand extends Command {
 //    	Robot.drive.crabDrive(stickPolar[0], stickPolar[1]);
 //    	End of Copy from Old Crab Command Code
     	double[] polar = getPolarCoords();
-////    	Beginning of test code
-//    	if(-stick.getRawAxis(1) > 1 )
-//    	{
-//    		drive.crabDrive(0, 1);
-//    	}
-//    	else if(-stick.getRawAxis(1) < -1 )
-//    	{
-//    		drive.crabDrive(0, -1);
-//    	}
-//    	else
-//    	{
-//    		System.out.println("Blank");
-//    	}
-////    	End of test code
     	if(isButtonPressed(Buttons.SWEARVE))
     	{
     		System.out.println("swearve");
@@ -79,11 +65,11 @@ public class DriveCommand extends Command {
 //		Beginning of test code
 //    	if(-stick.getRawAxis(1) > 0.1)
 //    	{
-//    		drive.crabDrive(0, 0.25);
+//    		drive.crabDrive(y, y);;
 //    	}
 //    	else if(-stick.getRawAxis(1) < -0.1)
 //    	{
-//    		drive.crabDrive(0, -0.25);
+//    		drive.crabDrive(y, y);
 //    	}
 //    	else
 //    	{
