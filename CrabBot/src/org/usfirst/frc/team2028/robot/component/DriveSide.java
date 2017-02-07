@@ -17,10 +17,6 @@ public class DriveSide {
     private CANTalon masterMotor;
 
     private CANTalon followerMotor;
-    
-    private CANTalon masterMotorm;
-    
-    private CANTalon followerMotorm;
 
     private SideOfRobot side;
     
