@@ -10,6 +10,9 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveSide {
+//	private double distance=0;
+//	private double pastpos=0;
+	
     private Wheel frontWheel;
 
     private Wheel rearWheel;
@@ -67,6 +70,32 @@ public class DriveSide {
     
     public void crabDrive(double angle, double speed)
     {
+//  	distance=pastpos-angle;
+//	
+//	if (Math.abs(distance)<0.25&&(1-Math.abs(distance))<0.25)
+//	{
+//		if(Math.abs(distance)<0.25)
+//		{
+//			angle=pastpos+distance;
+//		}
+//		if(Math.abs(distance)>0.25)
+//		{
+//			angle=pastpos+(1-distance);
+//		}
+//	}
+//	else
+//	{
+//		speed=speed*-1;
+//		if(Math.abs(distance)<0.75)
+//		{
+//			angle=pastpos+distance;
+//		}
+//		if(Math.abs(distance)>0.75)
+//		{
+//			angle=pastpos+(1-distance);
+//		}
+//	}
+//	pastpos=angle;
     	frontWheel.setPosition(angle);
     	rearWheel.setPosition(angle);
     	setSpeed(speed);
