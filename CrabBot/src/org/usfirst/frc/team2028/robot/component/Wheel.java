@@ -49,30 +49,29 @@ public class Wheel
 	 */
 	public double setPosition(double pos)
 	{
-//		//begining of test code 
-//		
-//		distance=pastpos-pos;
-//		if (Math.abs(distance)<0.5)
-//		{
-//			pos=pastpos+distance;
-//		}
-//		else if(Math.abs(distance)>0.5)
-//		{
-//			pos=pastpos+(1-distance);
-//		}
-//		else
-//		{
-//			pos=pastpos+distance;
-//		}
-//		
-//		//end of test code
+		//begining of test code 
+		
+		distance=pastpos-pos;
+		if (Math.abs(distance)<0.5)
+		{  
+			pos=pastpos+distance;
+		}
+		else if(Math.abs(distance)>0.5)
+		{
+			pos=pastpos+(1-distance);
+		}
+		else
+		{
+			pos=pastpos+distance;
+		}
+		
+		//end of test code
 		
     	pos +=offset;
     	pos *= Math.pow(10, 3);
     	pos = (int)pos;
     	pos /= Math.pow(10, 3);
     	wheelMotor.set(pos);
-    	pastpos=pos;
     	return pos;		
 	}
 	
