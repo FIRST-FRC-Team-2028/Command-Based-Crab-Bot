@@ -8,6 +8,8 @@ import com.ctre.CANTalon.TalonControlMode;
 
 public class Wheel 
 {
+	private double pastpos=0;
+	private double distance=0;
 	CANTalon wheelMotor;
 	double offset = 0;
 	double p =9,i=0.0002,d=0.0;
@@ -41,13 +43,36 @@ public class Wheel
 		return wheelMotor.getPosition()< getOffsetPosition(0.5);
 	}
 	
+	/**
+	 * Code determines shortest distance and has the robot go that way
+	 * @return The new steering setpoint.
+	 */
 	public double setPosition(double pos)
 	{
+//		//begining of test code 
+//		
+//		distance=pastpos-pos;
+//		if (Math.abs(distance)<0.5)
+//		{
+//			pos=pastpos+distance;
+//		}
+//		else if(Math.abs(distance)>0.5)
+//		{
+//			pos=pastpos+(1-distance);
+//		}
+//		else
+//		{
+//			pos=pastpos+distance;
+//		}
+//		
+//		//end of test code
+		
     	pos +=offset;
     	pos *= Math.pow(10, 3);
     	pos = (int)pos;
-    	pos /= Math.pow(10, 3);    	
+    	pos /= Math.pow(10, 3);
     	wheelMotor.set(pos);
+    	pastpos=pos;
     	return pos;		
 	}
 	

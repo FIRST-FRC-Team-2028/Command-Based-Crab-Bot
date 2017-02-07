@@ -8,6 +8,9 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
 public class DriveSide {
+	private double pastpos=0;
+	private double distance=0;
+	
     private Wheel frontWheel;
 
     private Wheel rearWheel;
@@ -58,8 +61,40 @@ public class DriveSide {
     	frontWheel.setPosition(angle);
     	rearWheel.setPosition(angle);
     	setSpeed(speed);
+//    	
+//    	//further adaption of solution begining
+//    	
+//    	distance=pastpos-angle;
+//    	
+//    	if (Math.abs(distance)<0.25&&(1-Math.abs(distance))<0.25)
+//		{
+//    		if(Math.abs(distance)<0.25)
+//    		{
+//    			angle=pastpos+distance;
+//    		}
+//    		if(Math.abs(distance)>0.25)
+//    		{
+//    			angle=pastpos+(1-distance);
+//    		}
+//    	}
+//		else
+//		{
+//			speed=speed*-1;
+//			if(Math.abs(distance)<0.75)
+//    		{
+//    			angle=pastpos+distance;
+//    		}
+//    		if(Math.abs(distance)>0.75)
+//    		{
+//    			angle=pastpos+(1-distance);
+//    		}
+//    	}
+//    	pastpos=angle;
+//
+//    	//further adaption of solution end
+//    	
     }
-
+    
 	public void printNeededOffsets()
 	{
 		frontWheel.printNeededOffsets();
