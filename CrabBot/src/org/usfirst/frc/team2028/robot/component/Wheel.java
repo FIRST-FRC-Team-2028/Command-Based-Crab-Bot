@@ -45,7 +45,7 @@ public class Wheel
 	
 	public double setPosition(double pos)
 	{
-		System.out.println(toString()+ " pos "+pos);
+//		System.out.println(toString()+ " pos "+pos);
 		double currentpos = wheelMotor.getPosition()-offset;
 		constRev = (int)currentpos;
 		double nextRev;
@@ -74,8 +74,8 @@ public class Wheel
 		double dcurr = Math.abs(currentRev-currentpos);
 		double dprev = Math.abs(prevRev-currentpos);
 //		System.out.println("Next: "+dnext);
-		System.out.println("Curr: "+dcurr);
-		SmartDashboard.putNumber("Curr", wheelMotor.getOutputCurrent());
+//		System.out.println("Curr: "+dcurr);
+//		SmartDashboard.putNumber("Curr", wheelMotor.getOutputCurrent());
 //		System.out.println("Prev: "+dprev);
 		if(dnext < dcurr && dnext < dprev)
 			pos = nextRev;
