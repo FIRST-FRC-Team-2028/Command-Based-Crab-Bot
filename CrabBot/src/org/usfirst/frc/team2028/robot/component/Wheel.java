@@ -8,8 +8,6 @@ import com.ctre.CANTalon.TalonControlMode;
 
 public class Wheel 
 {
-	private double pastpos=0;
-	private double distance=0;
 	CANTalon wheelMotor;
 	double offset = 0;
 	double p =9,i=0.0002,d=0.0;
@@ -50,19 +48,32 @@ public class Wheel
 	public double setPosition(double pos)
 	{
 		//begining of test code 
+		double startingpos=getPosition();
+		double distance=0;
 		
-		distance=pastpos-pos;
-		if (Math.abs(distance)<0.5)
-		{  
-			pos=pastpos+distance;
-		}
-		else if(Math.abs(distance)>0.5)
+		if(startingpos>pos)
 		{
-			pos=pastpos+(1-distance);
+			distance=startingpos-pos;
+		}
+		else if(startingpos<pos)
+		{
+			distance=pos-startingpos;
 		}
 		else
 		{
-			pos=pastpos+distance;
+			distance=.5;
+		}
+		if (Math.abs(distance)<0.5)
+		{  
+			pos=startingpos+distance;
+		}
+		else if(Math.abs(distance)>0.5)
+		{
+			pos=startingpos-(1-distance);
+		}
+		else
+		{
+			pos=startingpos+distance;
 		}
 		
 		//end of test code
