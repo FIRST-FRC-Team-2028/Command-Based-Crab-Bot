@@ -8,16 +8,58 @@ import com.ctre.CANTalon.TalonControlMode;
 
 public class Wheel 
 {
-	CANTalon wheelMotor;
-	double offset = 0;
-	double p =9,i=0.0002,d=0.0;
-	int canId =0;
-	double constRev = 0;
+	/**
+	 * 
+	 */
+	private CANTalon wheelMotor;
+	
+	/**
+	 * 
+	 */
+	private double offset = 0;
+	
+	/**
+	 * 
+	 */
+	private double f = 0;
+	
+	/**
+	 * 
+	 */
+	private double p = 9;
+	
+	/**
+	 * 
+	 */
+	private double i = 0.0002;
+	
+	/**
+	 * 
+	 */
+	private double d = 0.0;
+	
+	/**
+	 * 
+	 */
+	private int canId = 0;
+	
+	/**
+	 * 
+	 */
+	private double constRev = 0;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param canId
+	 * @param argOffset
+	 */
 	public Wheel(CanId canId, double argOffset)
 	{
 		wheelMotor = new CANTalon(canId.getId());
 		wheelMotor.changeControlMode(TalonControlMode.Position);
 		wheelMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+		wheelMotor.setF(f);
 		wheelMotor.setPID(p, i, d);
 		wheelMotor.enable();
 		offset = argOffset;
@@ -38,11 +80,14 @@ public class Wheel
 	
 	public boolean isPastCenter()
 	{
-		return wheelMotor.getPosition()< getOffsetPosition(0.5);
+		return wheelMotor.getPosition() < getOffsetPosition(0.5);
 	}
 	
 	/**
 	 * Code determines shortest distance and has the robot go that way
+	 * 
+	 * @param pos - This parameter is used for
+	 * 
 	 * @return The new steering setpoint.
 	 */
 	public double setPosition(double pos)
@@ -59,11 +104,29 @@ public class Wheel
 		{
 			distance=pos-startingpos;
 		}
+		else if(startingpos<0)
+		{
+			distance=Math.abs(startingpos)+pos;
+		}
+		else if(startingpos>1)
+		{
+			distance=startingpos+pos;
+		}
 		else
 		{
 			distance=.5;
 		}
-		if (Math.abs(distance)<0.5)
+		
+		
+		if(startingpos<0)
+		{
+			pos=distance-1;
+		}
+		else if (startingpos>1)
+		{
+			pos=distance;
+		}
+		else if (Math.abs(distance)<0.5)
 		{  
 			pos=startingpos+distance;
 		}
@@ -78,7 +141,6 @@ public class Wheel
 		
 		//end of test code
 		//problem 1 back wheels spin consistantly
-		//problem 2 wheels will go past 0 but the second number put in will cause the robot to spin
 		
     	pos +=offset;
     	pos *= Math.pow(10, 3);

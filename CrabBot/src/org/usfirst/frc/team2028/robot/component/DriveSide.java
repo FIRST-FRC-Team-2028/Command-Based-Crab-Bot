@@ -21,16 +21,19 @@ public class DriveSide {
     
     public DriveSide(SideOfRobot side) {
     	this.side = side;
+    	int masterCanId = -1;
         switch(side)
         {
         case RIGHT:
-            masterMotor = new CANTalon(CanId.DRIVE_RIGHT_MASTER.getId());
+        	masterCanId = CanId.DRIVE_RIGHT_MASTER.getId();
+            masterMotor = new CANTalon(masterCanId);
             followerMotor = new CANTalon(CanId.DRIVE_RIGHT_FOLLOWER.getId());
             frontWheel = new Wheel(CanId.STEERING_RIGHT_FRONT,SteeringOffset.RIGHT_FRONT.getOffset());
             rearWheel = new Wheel(CanId.STEERING_RIGHT_REAR,SteeringOffset.RIGHT_REAR.getOffset());
             break;
         case LEFT:
-            masterMotor = new CANTalon(CanId.DRIVE_LEFT_MASTER.getId());
+        	masterCanId = CanId.DRIVE_LEFT_MASTER.getId();
+            masterMotor = new CANTalon(masterCanId);
             followerMotor = new CANTalon(CanId.DRIVE_LEFT_FOLLOWER.getId());
             frontWheel = new Wheel(CanId.STEERING_LEFT_FRONT, SteeringOffset.LEFT_FRONT.getOffset());
             rearWheel = new Wheel(CanId.STEERING_LEFT_REAR,SteeringOffset.LEFT_REAR.getOffset());
@@ -43,7 +46,8 @@ public class DriveSide {
 		masterMotor.enableBrakeMode(false);
 		masterMotor.enable();
 		
-		followerMotor.changeControlMode(TalonControlMode.PercentVbus);
+		followerMotor.changeControlMode(TalonControlMode.Follower);
+		followerMotor.set(masterCanId);
 		followerMotor.enableBrakeMode(false);
 		followerMotor.enable();
     }
@@ -51,7 +55,6 @@ public class DriveSide {
     public void setSpeed(double speed)
     {
     	masterMotor.set(speed);
-    	followerMotor.set(speed);
     }
     
     public void crabDrive(double angle, double speed)
