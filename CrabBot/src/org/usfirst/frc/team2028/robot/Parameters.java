@@ -3,10 +3,10 @@ package org.usfirst.frc.team2028.robot;
 
 public class Parameters {
     public enum CanId {
-        DRIVE_RIGHT_MASTER (32, false),
-        DRIVE_RIGHT_FOLLOWER (23, false),
-        DRIVE_LEFT_MASTER (41, false),
-        DRIVE_LEFT_FOLLOWER (14, false),
+        DRIVE_RIGHT_MASTER (23, false),
+        DRIVE_RIGHT_FOLLOWER (32, false),
+        DRIVE_LEFT_MASTER (14, false),
+        DRIVE_LEFT_FOLLOWER (41, false),
         STEERING_LEFT_FRONT (10, false),
         STEERING_RIGHT_FRONT (20, false),
         STEERING_LEFT_REAR (40, false),
