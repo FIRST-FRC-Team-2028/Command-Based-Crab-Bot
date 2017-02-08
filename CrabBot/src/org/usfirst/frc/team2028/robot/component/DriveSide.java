@@ -61,38 +61,6 @@ public class DriveSide {
     	frontWheel.setPosition(angle);
     	rearWheel.setPosition(angle);
     	setSpeed(speed);
-//    	
-//    	//further adaption of solution begining
-//    	
-//    	distance=pastpos-angle;
-//    	
-//    	if (Math.abs(distance)<0.25&&(1-Math.abs(distance))<0.25)
-//		{
-//    		if(Math.abs(distance)<0.25)
-//    		{
-//    			angle=pastpos+distance;
-//    		}
-//    		if(Math.abs(distance)>0.25)
-//    		{
-//    			angle=pastpos+(1-distance);
-//    		}
-//    	}
-//		else
-//		{
-//			speed=speed*-1;
-//			if(Math.abs(distance)<0.75)
-//    		{
-//    			angle=pastpos+distance;
-//    		}
-//    		if(Math.abs(distance)>0.75)
-//    		{
-//    			angle=pastpos+(1-distance);
-//    		}
-//    	}
-//    	pastpos=angle;
-//
-//    	//further adaption of solution end
-//    	
     }
     
 	public void printNeededOffsets()
