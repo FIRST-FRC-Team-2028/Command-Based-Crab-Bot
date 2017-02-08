@@ -77,6 +77,8 @@ public class Wheel
 		}
 		
 		//end of test code
+		//problem 1 back wheels spin consistantly
+		//problem 2 wheels will go past 0 but the second number put in will cause the robot to spin
 		
     	pos +=offset;
     	pos *= Math.pow(10, 3);

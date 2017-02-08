@@ -8,8 +8,6 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
 public class DriveSide {
-	private double pastpos=0;
-	private double distance=0;
 	
     private Wheel frontWheel;
 
