@@ -8,6 +8,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
 public class DriveSide {
+	
     private Wheel frontWheel;
 
     private Wheel rearWheel;
@@ -59,7 +60,7 @@ public class DriveSide {
     	rearWheel.setPosition(angle);
     	setSpeed(speed);
     }
-
+    
 	public void printNeededOffsets()
 	{
 		frontWheel.printNeededOffsets();

@@ -41,12 +41,49 @@ public class Wheel
 		return wheelMotor.getPosition()< getOffsetPosition(0.5);
 	}
 	
+	/**
+	 * Code determines shortest distance and has the robot go that way
+	 * @return The new steering setpoint.
+	 */
 	public double setPosition(double pos)
 	{
+		//begining of test code 
+		double startingpos=getPosition();
+		double distance=0;
+		
+		if(startingpos>pos)
+		{
+			distance=startingpos-pos;
+		}
+		else if(startingpos<pos)
+		{
+			distance=pos-startingpos;
+		}
+		else
+		{
+			distance=.5;
+		}
+		if (Math.abs(distance)<0.5)
+		{  
+			pos=startingpos+distance;
+		}
+		else if(Math.abs(distance)>0.5)
+		{
+			pos=startingpos-(1-distance);
+		}
+		else
+		{
+			pos=startingpos+distance;
+		}
+		
+		//end of test code
+		//problem 1 back wheels spin consistantly
+		//problem 2 wheels will go past 0 but the second number put in will cause the robot to spin
+		
     	pos +=offset;
     	pos *= Math.pow(10, 3);
     	pos = (int)pos;
-    	pos /= Math.pow(10, 3);    	
+    	pos /= Math.pow(10, 3);
     	wheelMotor.set(pos);
     	return pos;		
 	}
