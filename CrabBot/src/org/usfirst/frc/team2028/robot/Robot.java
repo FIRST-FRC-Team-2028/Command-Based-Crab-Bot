@@ -59,7 +59,8 @@ public class Robot extends IterativeRobot {
     	drive.setDefaultCommand(driveComm);
     	    	
     	comp = new Compressor();
-    	comp.setClosedLoopControl(true);
+    	
+//    	comp.start();
     	
 //    	rearLeft = new Wheel(31,-0.03);
 ////    	rearLeft.disableControl();
@@ -101,7 +102,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
     	System.out.println("Tele init");
     	drive.enableTurning(true);
-//    	comp.start();
+    	comp.start();
     }
 
     @Override

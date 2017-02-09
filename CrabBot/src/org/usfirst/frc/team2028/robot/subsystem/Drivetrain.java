@@ -68,6 +68,7 @@ public class Drivetrain extends Subsystem {
     {
     	highGear.set(false);
     	lowGear.set(true);
+    	System.out.println("Hi");
     }
     
     public void setHighGear()
