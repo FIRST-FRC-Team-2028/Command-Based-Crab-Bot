@@ -90,27 +90,27 @@ public class Wheel
 	 * 
 	 * @return The new steering setpoint.
 	 */
-	public double setPosition(double pos)
+	public double setPosition(double pos)					
 	{
 		//begining of test code 
-		double startingpos=getPosition();
+		double startingpos = getPosition();					
 		double distance=0;
 		
-		if(startingpos>pos)
-		{
-			distance=startingpos-pos;
-		}
-		else if(startingpos<pos)
-		{
-			distance=pos-startingpos;
-		}
-		else if(startingpos<0)
+		if(startingpos<0)
 		{
 			distance=Math.abs(startingpos)+pos;
 		}
 		else if(startingpos>1)
 		{
 			distance=startingpos+pos;
+		}
+		else if(startingpos>pos)
+		{
+			distance=startingpos-pos;						
+		}
+		else if(startingpos<pos)
+		{
+			distance=pos-startingpos;
 		}
 		else
 		{
@@ -130,9 +130,13 @@ public class Wheel
 		{  
 			pos=startingpos+distance;
 		}
-		else if(Math.abs(distance)>0.5)
+		else if(Math.abs(distance)>0.5&&startingpos<pos)
 		{
-			pos=startingpos-(1-distance);
+			pos=startingpos-(1.0-distance);					
+		}
+		else if(Math.abs(distance)>0.5&&startingpos>pos)
+		{
+			pos=startingpos+(1.0-distance);				
 		}
 		else
 		{
@@ -142,11 +146,9 @@ public class Wheel
 		//end of test code
 		//problem 1 back wheels spin consistantly
 		
-    	pos +=offset;
-    	pos *= Math.pow(10, 3);
-    	pos = (int)pos;
-    	pos /= Math.pow(10, 3);
-    	wheelMotor.set(pos);
+    	pos += offset;										
+    	startingpos = roundOffToFourDigits(startingpos);
+    	wheelMotor.set(startingpos);								
     	return pos;		
 	}
 	
@@ -158,10 +160,7 @@ public class Wheel
 	public double getOffsetPosition(double pos)
 	{
 		pos += offset;
-    	pos *= Math.pow(10, 3);
-    	pos = (int)pos;
-    	pos /= Math.pow(10, 3);
-    	return pos;
+		return roundOffToFourDigits(pos);
 	}
 	
 	public boolean atSetpoint()
@@ -206,5 +205,12 @@ public class Wheel
 			System.out.println("Disabled "+canId);
 			wheelMotor.disableControl();
 		}
+	}
+	
+	private double roundOffToFourDigits(double pos) {
+    	pos *= 10000.0;
+    	pos = (int)pos;
+    	pos /= 10000.0;
+    	return pos;
 	}
 }
