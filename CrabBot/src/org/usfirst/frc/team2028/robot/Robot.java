@@ -77,16 +77,16 @@ public class Robot extends IterativeRobot {
 //    	leftDrive = new DriveUnit(32,51);
 //        
 //        low = new Solenoid(0);
-//        high = new Solenoid(7);
+//         high = new Solenoid(7);
 //        high.set(false);
 //        low.set(true);
-        
-    	driveComm.start();
     	
+    	driveComm.start();
         SmartDashboard.putNumber("Steering P", p);
         SmartDashboard.putNumber("Steering I", i);
         SmartDashboard.putNumber("Steering D", d);
         SmartDashboard.putNumber("Steering Position Setpoint", pos);
+        
     }
     
     @Override
@@ -115,6 +115,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	comp.start();
     	Scheduler.getInstance().run();
+    	
     	
 //    	System.out.println("Tele per");
 

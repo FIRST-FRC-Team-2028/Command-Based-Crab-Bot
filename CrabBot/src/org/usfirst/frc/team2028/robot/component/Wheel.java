@@ -44,6 +44,7 @@ public class Wheel
 	public double setPosition(double pos)
 	{
 		System.out.println(toString()+ " pos "+pos);
+		
 		double currentpos = wheelMotor.getPosition()-offset;
 		constRev = (int)currentpos;
 		double nextRev;
