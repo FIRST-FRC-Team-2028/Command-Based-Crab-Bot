@@ -42,13 +42,25 @@ public class DriveSide {
 		masterMotor.enableBrakeMode(false);
 		masterMotor.enable();
 		
-		followerMotor.changeControlMode(TalonControlMode.PercentVbus);
+		followerMotor.changeControlMode(TalonControlMode.Follower);
 		followerMotor.enableBrakeMode(false);
 		followerMotor.enable();
     }
     
     public void setSpeed(double speed)
     {
+//    	if(frontWheel.getPosition() > 0.25 || frontWheel.getPosition() == 0.5)
+//    	{
+//    		masterMotor.set(speed);
+//    	}
+//    	else if(frontWheel.getPosition() < 0.25 || frontWheel.getPosition() == 0)
+//    	{
+//    		masterMotor.set(-speed);
+//    	}
+//    	else
+//    	{
+//    		masterMotor.set(0);
+//    	}
     	masterMotor.set(speed);
     	followerMotor.set(speed);
     }
