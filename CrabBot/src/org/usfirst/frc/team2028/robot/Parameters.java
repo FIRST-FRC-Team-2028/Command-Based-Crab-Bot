@@ -59,7 +59,9 @@ public class Parameters {
 
     public enum Buttons {
        SWEARVE(2),
-       SPIN_ON_AXIS(1);
+       SPIN_ON_AXIS(1),
+       SHIFT_LOW_GEAR(3),
+       SHIFT_HIGH_GEAR(4);
        
        private int id;
        

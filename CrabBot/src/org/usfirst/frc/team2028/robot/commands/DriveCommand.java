@@ -34,6 +34,15 @@ public class DriveCommand extends Command {
     @Override
     protected void execute() {
     	double[] polar = getPolarCoords();
+    	if(isButtonPressed(Buttons.SHIFT_HIGH_GEAR))
+    	{
+    		drive.setHighGear();
+    	}
+    	else if(isButtonPressed(Buttons.SHIFT_LOW_GEAR))
+    	{
+    		drive.setLowGear();
+    	}
+    	
     	if(isButtonPressed(Buttons.SWEARVE))
     	{
     		System.out.println("swearve");
