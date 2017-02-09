@@ -35,6 +35,18 @@ public class Drivetrain extends Subsystem {
     	angle += 0.5;
     	leftSide.crabDrive(angle, speed);
     	rightSide.crabDrive(angle, speed);
+//    	if(stick.getRawAxis(0) > 0)
+//    	{
+//    		speed = -speed
+//    	} 
+//    	else if(stick.getRawAxis(0) < 0)
+//    	{
+//    		speed = speed
+//    	}
+//    	else
+//    	{
+//    		System.out.println(Failed);
+//    	}
     }
     
     public void swerveDrive(double angle, double speed)
