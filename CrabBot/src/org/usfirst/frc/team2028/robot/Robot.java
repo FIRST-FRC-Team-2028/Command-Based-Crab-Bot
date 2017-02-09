@@ -58,8 +58,8 @@ public class Robot extends IterativeRobot {
     	
     	drive.setDefaultCommand(driveComm);
     	    	
-//    	comp = new Compressor();
-//    	comp.setClosedLoopControl(true);
+    	comp = new Compressor();
+    	comp.setClosedLoopControl(true);
     	
 //    	rearLeft = new Wheel(31,-0.03);
 ////    	rearLeft.disableControl();
@@ -112,6 +112,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopPeriodic() {
+    	comp.start();
     	Scheduler.getInstance().run();
     	
 //    	System.out.println("Tele per");
