@@ -72,6 +72,21 @@ public class DriveCommand extends Command {
     	degrees /= 360;
     	double volts = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
     	
+//    	Beginning of possible part of solution
+		if(stick.getRawAxis(0) > 0)
+    	{
+    		drive.crabDrive(0, -x);
+    	}
+    	else if(stick.getRawAxis(0) < 0)
+    	{
+    		drive.crabDrive(.5, x);
+    	}
+    	else
+    	{
+    		System.out.println("Failed");
+    	}
+//		End of possible part of solution
+    	
     	System.out.println("Degree: "+degrees);
     	return new double[] {degrees,volts};
     }

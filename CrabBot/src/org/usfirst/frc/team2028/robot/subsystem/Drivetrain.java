@@ -35,6 +35,29 @@ public class Drivetrain extends Subsystem {
     	angle += 0.5;
     	leftSide.crabDrive(angle, speed);
     	rightSide.crabDrive(angle, speed);
+    	
+		double sumCurAngle =0;
+//		double angle = 0;
+//		double sumPrevQuarterAngle = 0;
+//		double prevQuarterAngle = angle-0.25;
+//		double sumNextQuarterAngle = 0;
+//		double nextQuarterAngle = angle+0.25;
+		
+//		Beginning of test code
+		if(sumCurAngle >= 0.5)
+		{
+			System.out.println("Positive");;
+		}
+		else if(sumCurAngle <= 0.5)
+		{
+			System.out.println("Negative");
+		}
+		else
+		{
+			System.out.println("Failed");
+		}
+//		Ending of test code
+    	
 //    	if(stick.getRawAxis(0) > 0)
 //    	{
 //    		speed = -speed
