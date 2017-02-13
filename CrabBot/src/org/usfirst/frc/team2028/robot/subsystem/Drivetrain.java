@@ -46,15 +46,15 @@ public class Drivetrain extends Subsystem {
 //		Beginning of test code
 		if(sumCurAngle >= 0.5)
 		{
-			System.out.println("Positive");;
+//			System.out.println("Positive");;
 		}
 		else if(sumCurAngle <= 0.5)
 		{
-			System.out.println("Negative");
+//			System.out.println("Negative");
 		}
 		else
 		{
-			System.out.println("Failed");
+//			System.out.println("Failed");
 		}
 //		Ending of test code
     	
@@ -74,15 +74,15 @@ public class Drivetrain extends Subsystem {
     
     public void swerveDrive(double angle, double speed)
     {
-    	System.out.println("Sw: "+angle);
+//    	System.out.println("Sw: "+angle);
 //    	angle*=0.125;
 //    	angle += 0.5;
-    	System.out.println("SW After: "+angle);
+//    	System.out.println("SW After: "+angle);
 		double in = ((45.0/360.0)*angle);
 		double out = ((16.97/360.0)*angle);
 		if(angle > 0)
 		{
-			System.out.println("here");
+//			System.out.println("here");
 			leftSide.swerveDrive(in, speed);
 			rightSide.swerveDrive(out, speed);
 		}
@@ -103,7 +103,7 @@ public class Drivetrain extends Subsystem {
     {
     	highGear.set(false);
     	lowGear.set(true);
-    	System.out.println("Hi");
+//    	System.out.println("Hi");
     }
     
     public void setHighGear()
@@ -115,7 +115,7 @@ public class Drivetrain extends Subsystem {
     public void setDefaultCommand(Command command)
     {
     	defaultCommand = command;
-    	System.out.println("Default");
+//    	System.out.println("Default");
     }
     
     @Override
@@ -123,7 +123,7 @@ public class Drivetrain extends Subsystem {
     {
     	if(defaultCommand != null)
     	{
-    		System.out.println("InitDef");
+//    		System.out.println("InitDef");
     		setDefaultCommand(defaultCommand);
     	}
     }

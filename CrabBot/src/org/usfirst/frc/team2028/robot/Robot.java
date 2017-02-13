@@ -2,13 +2,14 @@
 package org.usfirst.frc.team2028.robot;
 
 
+import org.usfirst.frc.team2028.robot.commands.DefaultPixyCommand;
 import org.usfirst.frc.team2028.robot.commands.DriveCommand;
 import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
+import org.usfirst.frc.team2028.robot.subsystem.PixyCamera;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -45,18 +46,23 @@ public class Robot extends IterativeRobot {
 	
 	
 	public static DriveCommand driveComm;
+	public static DefaultPixyCommand dPixyComm;
 	
 	public static Drivetrain drive;
+	public static PixyCamera pixyCam;
 	
     public Robot() {
 //    	stick = new Joystick(1); 
     	oneStick = new Joystick(5);
     	
     	drive = new Drivetrain(driveComm);
+    	pixyCam = new PixyCamera();
     	
     	driveComm = new DriveCommand(oneStick);
+    	dPixyComm = new DefaultPixyCommand();
     	
     	drive.setDefaultCommand(driveComm);
+    	pixyCam.setDefaultCommand(dPixyComm);
     	    	
     	comp = new Compressor();
     	
@@ -82,6 +88,7 @@ public class Robot extends IterativeRobot {
 //        low.set(true);
     	
     	driveComm.start();
+    	dPixyComm.start();
         SmartDashboard.putNumber("Steering P", p);
         SmartDashboard.putNumber("Steering I", i);
         SmartDashboard.putNumber("Steering D", d);

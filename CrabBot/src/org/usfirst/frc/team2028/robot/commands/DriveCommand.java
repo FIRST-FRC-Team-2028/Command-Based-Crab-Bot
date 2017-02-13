@@ -21,13 +21,13 @@ public class DriveCommand extends Command {
     	requires(Robot.drive);
     	drive = Robot.drive;
     	this.stick = stick;
-    	System.out.println("got here");
+//    	System.out.println("got here");
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	System.out.println("Comm init");
+//    	System.out.println("Comm init");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -45,7 +45,7 @@ public class DriveCommand extends Command {
     	
     	if(isButtonPressed(Buttons.SWEARVE))
     	{
-    		System.out.println("swearve");
+//    		System.out.println("swearve");
     		
     		drive.swerveDrive(-stick.getRawAxis(2), polar[1]);
     	}
@@ -73,21 +73,21 @@ public class DriveCommand extends Command {
     	double volts = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
     	
 //    	Beginning of possible part of solution
-		if(stick.getRawAxis(0) > 0)
-    	{
-    		drive.crabDrive(0, -x);
-    	}
-    	else if(stick.getRawAxis(0) < 0)
-    	{
-    		drive.crabDrive(.5, x);
-    	}
-    	else
-    	{
-    		System.out.println("Failed");
-    	}
+//		if(stick.getRawAxis(0) > 0)
+//    	{
+//    		drive.crabDrive(0, -x);
+//    	}
+//    	else if(stick.getRawAxis(0) < 0)
+//    	{
+//    		drive.crabDrive(.5, x);
+//    	}
+//    	else
+//    	{
+//    		System.out.println("Failed");
+//    	}
 //		End of possible part of solution
     	
-    	System.out.println("Degree: "+degrees);
+//    	System.out.println("Degree: "+degrees);
     	return new double[] {degrees,volts};
     }
     

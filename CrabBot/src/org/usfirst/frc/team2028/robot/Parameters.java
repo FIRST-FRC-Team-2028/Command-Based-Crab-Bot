@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2028.robot;
 
-
 public class Parameters {
     public enum CanId {
         DRIVE_RIGHT_MASTER (23, false),
@@ -93,4 +92,11 @@ public class Parameters {
         }
     }
 
+    
+//    public static Dimension pixyRes = new Dimension(640,400);
+    public static int pixyResx = 640;
+    public static int pixyResy = 400;
+    //Field of view in degrees
+    public static int xPixyFOV = 75;
+    public static int yPixyFOV = 47;
 }
