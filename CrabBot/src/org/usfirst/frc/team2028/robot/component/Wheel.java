@@ -9,42 +9,42 @@ import com.ctre.CANTalon.TalonControlMode;
 public class Wheel 
 {
 	/**
-	 * 
+	 * Gets CanTalon Info
 	 */
 	private CANTalon wheelMotor;
 	
 	/**
-	 * 
+	 * Gets the individual offsets
 	 */
 	private double offset = 0;
 	
 	/**
-	 * 
+	 * declares the f
 	 */
 	private double f = 0;
 	
 	/**
-	 * 
+	 * declares the p
 	 */
 	private double p = 9;
 	
 	/**
-	 * 
+	 * declares the i
 	 */
 	private double i = 0.0002;
 	
 	/**
-	 * 
+	 * declares the d
 	 */
 	private double d = 0.0;
 	
 	/**
-	 * 
+	 * allows to access the identity of the current canid
 	 */
 	private int canId = 0;
 	
 	/**
-	 * 
+	 * does nothing currently
 	 */
 	private double constRev = 0;
 	
@@ -86,70 +86,55 @@ public class Wheel
 	/**
 	 * Code determines shortest distance and has the robot go that way
 	 * 
-	 * @param pos - This parameter is used for
+	 * @param pos - This parameter is used for determining the new setpoint to go to.
 	 * 
 	 * @return The new steering setpoint.
 	 */
 	public double setPosition(double pos)					
-	{
-		//begining of test code 
+	{			
 		double startingpos = getPosition();					
-		double distance=0;
+		double distance=0;	
 		
-		if(startingpos<0)
-		{
-			distance=Math.abs(startingpos)+pos;
-		}
-		else if(startingpos>1)
-		{
-			distance=startingpos+pos;
-		}
-		else if(startingpos>pos)
-		{
-			distance=startingpos-pos;						
-		}
-		else if(startingpos<pos)
-		{
-			distance=pos-startingpos;
-		}
-		else
-		{
-			distance=.5;
-		}
-		
-		
-		if(startingpos<0)
-		{
-			pos=distance-1;
-		}
-		else if (startingpos>1)
-		{
-			pos=distance;
-		}
-		else if (Math.abs(distance)<0.5)
-		{  
-			pos=startingpos+distance;
-		}
-		else if(Math.abs(distance)>0.5&&startingpos<pos)
-		{
-			pos=startingpos-(1.0-distance);					
-		}
-		else if(Math.abs(distance)>0.5&&startingpos>pos)
-		{
-			pos=startingpos+(1.0-distance);				
-		}
-		else
-		{
-			pos=startingpos+distance;
-		}
-		
-		//end of test code
-		//problem 1 back wheels spin consistantly
-		
-    	pos += offset;										
     	startingpos = roundOffToFourDigits(startingpos);
-    	wheelMotor.set(startingpos);								
-    	return pos;		
+    	pos = roundOffToFourDigits(pos);
+    	
+    	System.out.println("pos"+pos);
+    	System.out.println("startingpos"+startingpos);
+    	
+    			if(startingpos>pos)
+    			{
+    				distance=startingpos-pos;						
+    			}
+    			else if(startingpos<pos)
+    			{
+    				distance=pos-startingpos;
+    			}
+    			else
+    			{
+    				distance=.5;}
+    			
+    			if (distance>=1)
+    			{
+    				int distance2=(int) distance;
+    				distance=distance-distance2;
+    			}
+    			
+    			if(distance>0.5)
+    			{
+    				pos=startingpos-(1-distance);
+    			}
+    			else if (distance<=0.5)
+    			{
+    				startingpos+=distance;
+    			}
+    			
+    			System.out.println("pos"+pos);
+    	    	System.out.println("startingpos"+startingpos);
+    			
+    	pos += offset;		
+    	wheelMotor.set(pos);								
+    	return pos;	
+    	//current is that 1=-1
 	}
 	
 	public void disableControl()
