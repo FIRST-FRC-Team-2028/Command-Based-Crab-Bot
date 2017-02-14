@@ -111,7 +111,7 @@ public class Wheel
     			}
     			else
     			{
-    				distance=.5;}
+    				distance=0;}
     			
     			if (distance>=1)
     			{
