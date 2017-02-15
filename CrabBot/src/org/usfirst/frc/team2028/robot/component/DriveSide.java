@@ -59,38 +59,57 @@ public class DriveSide {
     
     public void crabDrive(double angle, double speed)
     {
-    	frontWheel.setPosition(angle);
+    	double startingpos = frontWheel.getPosition();
+    	double distance = 0.0;
+        if(startingpos > angle)
+		{
+			distance = startingpos - angle;						
+		}
+		else if (startingpos < angle)
+		{
+			distance = angle - startingpos;
+		}
+		else
+		{
+			distance = 0;}
+		
+		if (distance >= 1)
+		{
+			int distance2 = (int) distance;
+			distance = distance - distance2;}
+		
+		if (distance > 0.5)
+		{
+			angle = startingpos - (1 - distance);
+		}
+		else if (distance <= 0.5 && startingpos > 1)
+		{
+			angle = startingpos - distance;
+		}
+		else if (distance <= 0.5)
+		{
+			angle = startingpos + distance;}
+		
+		distance = startingpos - angle;
+		
+		if (distance > 0.25 || distance <- 0.25)
+		{
+			// Flip the angle setpoint by 180 degrees and run the motor in reverse
+			if (distance < 0)
+			{
+				angle = angle - 0.5;
+			}
+			else
+			{
+				angle = angle + 0.5;}
+			
+			speed *= -1.0;
+		}
+		
+		frontWheel.setPosition(angle);
     	rearWheel.setPosition(angle);
     	setSpeed(speed);
-//    	double startingpos=0.0;
-//    	double distance=0.0;
-//        if(startingpos>angle)
-//		{
-//			distance=startingpos-angle;						
-//		}
-//		else if(startingpos<angle)
-//		{
-//			distance=angle-startingpos;
-//		}
-//		else
-//		{
-//			distance=0;}
-//		
-//		if (distance>=1)
-//		{
-//			int distance2=(int) distance;
-//			distance=distance-distance2;}
-//		System.out.println("distance: "+distance);
-//		if(distance>0.25)
-//		{
-//			angle=startingpos-=(0.5-distance);
-//			speed*=-1;
-//		}
-//		else if (distance<=0.25)
-//		{
-//			angle=startingpos+=distance;}
-//		System.out.println("pos: "+angle);
-//		System.out.println("speed: "+speed);
+		
     }
 
 
