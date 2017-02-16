@@ -27,12 +27,13 @@ public class DriveCommand extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-//    	System.out.println("Comm init");
+    	System.out.println("Comm init");
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+//    	System.out.println("here");
     	double[] polar = getPolarCoords();
     	if(isButtonPressed(Buttons.SHIFT_HIGH_GEAR))
     	{
@@ -47,7 +48,7 @@ public class DriveCommand extends Command {
     	{
 //    		System.out.println("swearve");
     		
-    		drive.swerveDrive(-stick.getRawAxis(2), polar[1]);
+    		drive.swerveDrive(-stick.getRawAxis(2), -stick.getRawAxis(1));
     	}
     	else if(isButtonPressed(Buttons.SPIN_ON_AXIS))
     	{

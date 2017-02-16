@@ -74,7 +74,7 @@ public class DriveSide {
     
     public void swerveDrive(double angle, double speed)
     {
-    	System.out.println(side + " angle: "+angle);
+//    	System.out.println(side + " angle: "+angle);
     	switch(side)
     	{
     	case LEFT:

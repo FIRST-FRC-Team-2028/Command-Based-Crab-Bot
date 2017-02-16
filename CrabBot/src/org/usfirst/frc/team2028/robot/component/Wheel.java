@@ -89,6 +89,7 @@ public class Wheel
 //			System.out.println("here");
 //			constRot++;
 //		}
+//		System.out.println(canId+ " "+pos);
     	pos +=offset;
     	
 //	    	System.out.println("Offset: "+pos);

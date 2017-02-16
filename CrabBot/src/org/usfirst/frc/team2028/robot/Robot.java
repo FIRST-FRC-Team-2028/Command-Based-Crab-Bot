@@ -2,14 +2,17 @@
 package org.usfirst.frc.team2028.robot;
 
 
+import org.usfirst.frc.team2028.robot.commands.AutonomousPlaceGear;
 import org.usfirst.frc.team2028.robot.commands.DefaultPixyCommand;
 import org.usfirst.frc.team2028.robot.commands.DriveCommand;
+import org.usfirst.frc.team2028.robot.commands.PlaceGearButton;
 import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 import org.usfirst.frc.team2028.robot.subsystem.PixyCamera;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -42,11 +45,14 @@ public class Robot extends IterativeRobot {
 	double p = 9, i =0.0002, d=0, pos = 0;
 	boolean centered = false; 
 	boolean oneStickDriving = true;
-	Joystick stick,potStick,oneStick;
+	public static Joystick stick,potStick,oneStick;
 	
 	
 	public static DriveCommand driveComm;
 	public static DefaultPixyCommand dPixyComm;
+	public static AutonomousPlaceGear autoPlaceGear;
+	
+	public static PlaceGearButton placeGear;
 	
 	public static Drivetrain drive;
 	public static PixyCamera pixyCam;
@@ -55,14 +61,10 @@ public class Robot extends IterativeRobot {
 //    	stick = new Joystick(1); 
     	oneStick = new Joystick(5);
     	
-    	drive = new Drivetrain(driveComm);
-    	pixyCam = new PixyCamera();
     	
-    	driveComm = new DriveCommand(oneStick);
-    	dPixyComm = new DefaultPixyCommand();
+//    	dPixyComm = new DefaultPixyCommand();
     	
-    	drive.setDefaultCommand(driveComm);
-    	pixyCam.setDefaultCommand(dPixyComm);
+//    	placeGear.whenPressed(command);
     	    	
     	comp = new Compressor();
     	
@@ -87,8 +89,8 @@ public class Robot extends IterativeRobot {
 //        high.set(false);
 //        low.set(true);
     	
-    	driveComm.start();
-    	dPixyComm.start();
+    	
+    	
         SmartDashboard.putNumber("Steering P", p);
         SmartDashboard.putNumber("Steering I", i);
         SmartDashboard.putNumber("Steering D", d);
@@ -98,6 +100,21 @@ public class Robot extends IterativeRobot {
     
     @Override
     public void robotInit() {
+    	System.out.println("here robot init");
+    	drive = new Drivetrain();
+//    	driveComm = (DriveCommand)drive.getDefaultCommand();
+    	
+    	pixyCam = new PixyCamera();
+
+    	autoPlaceGear = new AutonomousPlaceGear();
+    	
+    	pixyCam.setDefaultCommand(autoPlaceGear);
+    	
+    	placeGear = new PlaceGearButton();
+    	
+    	placeGear.whenPressed(autoPlaceGear);
+    	
+
     }
 
     @Override
@@ -122,7 +139,6 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	comp.start();
     	Scheduler.getInstance().run();
-    	
     	
 //    	System.out.println("Tele per");
 

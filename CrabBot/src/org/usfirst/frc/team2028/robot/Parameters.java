@@ -94,8 +94,8 @@ public class Parameters {
 
     
 //    public static Dimension pixyRes = new Dimension(640,400);
-    public static int pixyResx = 640;
-    public static int pixyResy = 400;
+    public static int pixyResx = 320; //Could be 320 or 640 
+    public static int pixyResy = 200; //Could be 200 or 400
     //Field of view in degrees
     public static int xPixyFOV = 75;
     public static int yPixyFOV = 47;

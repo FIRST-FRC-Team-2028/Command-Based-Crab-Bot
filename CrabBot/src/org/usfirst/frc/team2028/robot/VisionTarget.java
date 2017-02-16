@@ -4,37 +4,43 @@ import java.awt.Dimension;
 
 public class VisionTarget {
 	
-	public static int pixyResx= Parameters.pixyResx,pixyResy = Parameters.pixyResy;
-	public static int xFOV = Parameters.xPixyFOV;
-	public static int yFOV = Parameters.yPixyFOV;
+	public static double pixyResx= Parameters.pixyResx,pixyResy = Parameters.pixyResy;
+	public static double xFOV = Parameters.xPixyFOV;
+	public static double yFOV = Parameters.yPixyFOV;
 	
-    public int x;
+    public double x;
 
-    public int y;
+    public double y;
 
-    public int width;
+    public double width;
 
-    public int height;
+    public double height;
     
-    public int area;
+    public double area;
     
     //Angle from center
     public double xAFC;
     public double yAFC;
 
-    public VisionTarget(int x, int y, int width, int height)
+    public VisionTarget(double x, double y, double width, double height)
     {
     	this.x = x;
     	this.y = y;
     	this.width = width;
     	this.height = height;
+    	System.out.println("\nX: "+x);
+    	System.out.println("Y: "+y);
+    	System.out.println("W: "+width);
+    	System.out.println("H: "+height);
     	area = width*height;
-    	xAFC = ( ( (x+(width/2)) - (pixyResx/2) ) / (pixyResx/2) ) * (xFOV/2);
+    	xAFC = (x+(width/2))-(pixyResx/2);
+    	System.out.println(xAFC);
+    	xAFC = ( xAFC / (pixyResx/2) );
     	yAFC = ( ( (y+(height/2)) - (pixyResy/2) ) / (pixyResy/2) ) * (yFOV/2);
     	
     }
     
-    public int getSize() {
+    public double getSize() {
         // TODO Auto-generated method stub
     	return area;
     }

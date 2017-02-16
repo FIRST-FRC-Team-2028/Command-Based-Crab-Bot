@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2028.robot.subsystem;
 
 import org.usfirst.frc.team2028.robot.Parameters;
+import org.usfirst.frc.team2028.robot.Robot;
+import org.usfirst.frc.team2028.robot.commands.DriveCommand;
 import org.usfirst.frc.team2028.robot.component.DriveSide;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -16,10 +18,8 @@ public class Drivetrain extends Subsystem {
     
     private Command defaultCommand;
     
-    public Drivetrain(Command defaultCommand)
+    public Drivetrain()
     {
-    	this.defaultCommand = defaultCommand;
-    	
     	leftSide = new DriveSide(Parameters.SideOfRobot.LEFT);
     	rightSide = new DriveSide(Parameters.SideOfRobot.RIGHT);
     	
@@ -112,21 +112,19 @@ public class Drivetrain extends Subsystem {
     	highGear.set(true);
     }
     
-    public void setDefaultCommand(Command command)
-    {
-    	defaultCommand = command;
-//    	System.out.println("Default");
-    }
     
     @Override
     protected void initDefaultCommand() 
     {
-    	if(defaultCommand != null)
-    	{
-//    		System.out.println("InitDef");
-    		setDefaultCommand(defaultCommand);
-    	}
+    	defaultCommand = new DriveCommand(Robot.oneStick);
+//		System.out.println("InitDef");
+		setDefaultCommand(defaultCommand);
     }
+    
+//    public Command getDefaultCommand()
+//    {
+//    	return defaultCommand;
+//    }
     
     public void printNeededOffsets()
     {
