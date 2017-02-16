@@ -78,7 +78,11 @@ public class DriveSide {
 			int distance2 = (int) distance;
 			distance = distance - distance2;}
 		
-		if (distance > 0.5)
+		if (angle == 1)
+		{
+			angle = 0;
+		}
+		else if (distance > 0.5)
 		{
 			angle = startingpos - (1 - distance);
 		}
