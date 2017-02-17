@@ -9,10 +9,12 @@ import org.usfirst.frc.team2028.robot.commands.PlaceGearButton;
 import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 import org.usfirst.frc.team2028.robot.subsystem.PixyCamera;
 
+//import com.ctre.CANTalon;
+//import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -57,10 +59,13 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drive;
 	public static PixyCamera pixyCam;
 	
+//	CANTalon fans;
+	
     public Robot() {
 //    	stick = new Joystick(1); 
     	oneStick = new Joystick(5);
-    	
+//    	fans.changeControlMode(TalonControlMode.PercentVbus);
+//    	fans.enable();
     	
 //    	dPixyComm = new DefaultPixyCommand();
     	
