@@ -4,6 +4,8 @@ import org.usfirst.frc.team2028.robot.Parameters.Buttons;
 import org.usfirst.frc.team2028.robot.Robot;
 import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -21,6 +23,7 @@ public class DriveCommand extends Command {
     	requires(Robot.drive);
     	drive = Robot.drive;
     	this.stick = stick;
+//    	fans = Robot.fans;//                       				For Fans
 //    	System.out.println("got here");
     }
 
@@ -34,6 +37,9 @@ public class DriveCommand extends Command {
     @Override
     protected void execute() {
 //    	System.out.println("here");
+//    	fans.changeControlMode(TalonControlMode.PercentVbus);//    For Fans
+//    	fans.setVoltageRampRate(7);//								For Fans
+//    	fans.enable();// 											For Fans
     	double[] polar = getPolarCoords();
     	if(isButtonPressed(Buttons.SHIFT_HIGH_GEAR))
     	{

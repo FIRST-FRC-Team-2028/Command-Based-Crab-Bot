@@ -9,6 +9,9 @@ import org.usfirst.frc.team2028.robot.commands.PlaceGearButton;
 import org.usfirst.frc.team2028.robot.subsystem.Drivetrain;
 import org.usfirst.frc.team2028.robot.subsystem.PixyCamera;
 
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
 //import com.ctre.CANTalon;
 //import com.ctre.CANTalon.TalonControlMode;
 
@@ -40,13 +43,13 @@ public class Robot extends IterativeRobot {
 	
 //	DriveUnit rightDrive, leftDrive;
 //	CANTalon frontDrive, rearDrive;
-	int count =0;
-	boolean enabled = false;
+//	int count =0;
+//	boolean enabled = false;
 	Compressor comp;
 //	Solenoid low,high;
-	double p = 9, i =0.0002, d=0, pos = 0;
-	boolean centered = false; 
-	boolean oneStickDriving = true;
+//	double p = 9, i =0.0002, d=0, pos = 0;
+//	boolean centered = false; 
+//	boolean oneStickDriving = true;
 	public static Joystick stick,potStick,oneStick;
 	
 	
@@ -59,14 +62,15 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drive;
 	public static PixyCamera pixyCam;
 	
-//	CANTalon fans;
+	CANTalon fans;
 	
     public Robot() {
 //    	stick = new Joystick(1); 
     	oneStick = new Joystick(5);
-//    	fans.changeControlMode(TalonControlMode.PercentVbus);
-//    	fans.enable();
-    	
+    	fans.changeControlMode(TalonControlMode.PercentVbus);
+    	fans.setVoltageRampRate(7);
+    	fans.enable();
+//    	
 //    	dPixyComm = new DefaultPixyCommand();
     	
 //    	placeGear.whenPressed(command);
@@ -96,10 +100,10 @@ public class Robot extends IterativeRobot {
     	
     	
     	
-        SmartDashboard.putNumber("Steering P", p);
-        SmartDashboard.putNumber("Steering I", i);
-        SmartDashboard.putNumber("Steering D", d);
-        SmartDashboard.putNumber("Steering Position Setpoint", pos);
+//        SmartDashboard.putNumber("Steering P", p);
+//        SmartDashboard.putNumber("Steering I", i);
+//        SmartDashboard.putNumber("Steering D", d);
+//        SmartDashboard.putNumber("Steering Position Setpoint", pos);
         
     }
     
@@ -308,17 +312,17 @@ public class Robot extends IterativeRobot {
 //		stick.setRumble(RumbleType.kRightRumble, 0);
 //    }
 
-    public double normalizeInput(double pos)
-    {
-    	if(isWithinDeadband(pos))
-    		return 0;
-    	return pos;
-    }
-    
-    public boolean isWithinDeadband(double pos)
-    {
-    	return Math.abs(pos)<0.09;
-    }
+//    public double normalizeInput(double pos)
+//    {
+//    	if(isWithinDeadband(pos))
+//    		return 0;
+//    	return pos;
+//    }
+//    
+//    public boolean isWithinDeadband(double pos)
+//    {
+//    	return Math.abs(pos)<0.09;
+//    }
     
 //    public void toggleGear(boolean highGear)
 //    {

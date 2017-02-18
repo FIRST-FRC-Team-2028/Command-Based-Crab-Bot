@@ -8,11 +8,52 @@ import com.ctre.CANTalon.TalonControlMode;
 
 public class Wheel 
 {
-	CANTalon wheelMotor;
-	double offset = 0;
-	double p =9,i=0.0002,d=0.0;
-	int canId =0;
-	double constRev = 0;
+	/**
+	 * Gets CanTalon Info
+	 */
+	private CANTalon wheelMotor;
+	
+	/**
+	 * Gets the individual offsets
+	 */
+	private double offset = 0;
+	
+	/**
+	 * declares the f
+	 */
+	private double f = 0;
+	
+	/**
+	 * declares the p
+	 */
+	private double p = 9;
+	
+	/**
+	 * declares the i
+	 */
+	private double i = 0.0002;
+	
+	/**
+	 * declares the d
+	 */
+	private double d = 0.0;
+	
+	/**
+	 * allows to access the identity of the current canid
+	 */
+	private int canId = 0;
+	
+	/**
+	 * does nothing currently
+	 */
+	private double constRev = 0;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param canId
+	 * @param argOffset
+	 */
 	public Wheel(CanId canId, double argOffset)
 	{
 		wheelMotor = new CANTalon(canId.getId());
@@ -38,78 +79,66 @@ public class Wheel
 	
 	public boolean isPastCenter()
 	{
-		return wheelMotor.getPosition()< getOffsetPosition(0.5);
+		return wheelMotor.getPosition() < getOffsetPosition(0.5);
 	}
 	
-	public double setPosition(double pos)
-	{
-//		System.out.println(toString()+ " pos "+pos);
+	/**
+	 * Code determines shortest distance and has the robot go that way
+	 * 
+	 * @param pos - This parameter is used for determining the new setpoint to go to.
+	 * 
+	 * @return The new steering setpoint.
+	 */
+	public double setPosition(double pos)					
+	{			
+		double startingpos = getPosition();					
+		double distance = 0;	
 		
-		double currentpos = wheelMotor.getPosition()-offset;
-		constRev = (int)currentpos;
-		double nextRev;
-		double currentRev;
-		double prevRev;
-		
-		if(currentpos < 0)
-		{
-			constRev-=1;
-		}
-		
-		nextRev = constRev+1.0+pos;
-		currentRev = constRev+pos;
-		prevRev = constRev-1.0+pos;
-		
-//		System.out.println("Motor: "+canId);
-//		System.out.println("Goal: "+pos);
-//		System.out.println("Const: "+constRev);
-//		System.out.println("Current pos"+currentpos);
-//		System.out.println("Next rotg"+nextRev);
-//		System.out.println("Current rotg"+currentRev);
-//		System.out.println("Prev rotg"+prevRev);
-//		System.out.println("-------------------------------");
-
-		double dnext = Math.abs(nextRev-currentpos);
-		double dcurr = Math.abs(currentRev-currentpos);
-		double dprev = Math.abs(prevRev-currentpos);
-//		System.out.println("Next: "+dnext);
-//		System.out.println("Curr: "+dcurr);
-//		System.out.println("Prev: "+dprev);
-		if(dnext < dcurr && dnext < dprev)
-			pos = nextRev;
-		else if(dcurr < dnext && dcurr < dprev)
-			pos = currentRev;
-		else if(dprev < dcurr && dprev < dnext)
-			pos = prevRev;
-//		double d0 = Math.abs((wheelMotor.getPosition()-offset)-constRot);
-//		double d1 = Math.abs((wheelMotor.getPosition()-offset)-(constRot+1));
-		
-		//		if(d1 < d0)
-//		{
-//			System.out.println("here");
-//			constRot++;
-//		}
-//		System.out.println(canId+ " "+pos);
-    	pos +=offset;
+    	startingpos = roundOffToFourDigits(startingpos);
+    	pos = roundOffToFourDigits(pos);
     	
-//	    	System.out.println("Offset: "+pos);
-    	pos *= Math.pow(10, 3);
-//	    	System.out.println("AM: "+pos);
-    	pos = (int)pos;
-//	    	System.out.println("Int: "+pos);
-    	pos /= Math.pow(10, 3);
-//	    	System.out.println("Div: "+pos);
+    	System.out.println("pos" + pos);
+    	System.out.println("startingpos" + startingpos);
     	
-    	wheelMotor.set(pos);
-    	return pos;
-//	    wheelMotor.setPosition(pos);
-//	   	{
-//	   	if(wheelMotor != null)
-//	   		wheelMotor.setPosition(0);
-//	  		else
-//   			return pos;
-//		}
-			
+    			if (startingpos > pos)
+    			{
+    				distance = startingpos - pos;						
+    			}
+    			else if (startingpos < pos)
+    			{
+    				distance = pos - startingpos;
+    			}
+    			else
+    			{
+    				distance = 0;}
+    			
+    			if (distance >= 1)
+    			{
+    				int distance2 = (int) distance;
+    				distance = distance - distance2;
+    			}
+    			
+    			if(distance > 0.5)
+    			{
+    				pos = startingpos - (1 - distance);
+    			}
+    			else if (distance <= 0.5 && startingpos > 1)
+    			{
+    				startingpos -= distance;
+    			}
+    			else if (distance <= 0.5)
+    			{
+    				startingpos += distance;
+    			}
+    			
+    			System.out.println ("pos" + pos);
+    	    	System.out.println ("startingpos" + startingpos);
+    			
+    	pos += offset;	
+    	pos = roundOffToFourDigits(pos);
+    	wheelMotor.set(pos);								
+    	return pos;	
+    	//current is that 1=-1
 	}
 	
 	public void disableControl()
@@ -120,15 +149,11 @@ public class Wheel
 	public double getOffsetPosition(double pos)
 	{
 		pos += offset;
-    	pos *= Math.pow(10, 3);
-    	pos = (int)pos;
-    	pos /= Math.pow(10, 3);
-    	return pos;
+		return roundOffToFourDigits(pos);
 	}
 	
 	public boolean atSetpoint()
     {
-//    	System.out.println(Math.abs(wheelMotor.getPosition()-wheelMotor.getSetpoint()));
     	if(Math.abs(wheelMotor.getPosition()-wheelMotor.getSetpoint()) <= 0.01)
     		return true;
     	return false;
@@ -153,7 +178,6 @@ public class Wheel
 
 	public void printNeededOffsets() 
 	{
-//		wheelMotor.setPosition(0.5);
 		double num = wheelMotor.getPosition()-0.5;
 		System.out.println(canId + " offset needed " + num );
 		System.out.println("\t "+getPosition());
@@ -170,5 +194,12 @@ public class Wheel
 			System.out.println("Disabled "+canId);
 			wheelMotor.disableControl();
 		}
+	}
+	
+	private double roundOffToFourDigits(double pos) {
+    	pos *= 10000.0;
+    	pos = (int)pos;
+    	pos /= 10000.0;
+    	return pos;
 	}
 }
