@@ -93,46 +93,50 @@ public class Wheel
 	public double setPosition(double pos)					
 	{			
 		double startingpos = getPosition();					
-		double distance=0;	
+		double distance = 0;	
 		
     	startingpos = roundOffToFourDigits(startingpos);
     	pos = roundOffToFourDigits(pos);
     	
-    	System.out.println("pos"+pos);
-    	System.out.println("startingpos"+startingpos);
+    	System.out.println("pos" + pos);
+    	System.out.println("startingpos" + startingpos);
     	
-	    	if (startingpos > pos)
-			{
-				distance = startingpos - pos;						
-			}
-			else if (startingpos < pos)
-			{
-				distance = pos - startingpos;
-			}
-			else
-			{
-				distance = 0;}
-			
-			if (distance >= 1)
-			{
-				int distance2 = (int) distance;
-				distance = distance - distance2;
-			}
-			
-			if(distance > 0.5)
-			{
-				pos = startingpos - (1 - distance);
-			}
-			else if (distance <= 0.5 && startingpos > 1)
-			{
-				startingpos -= distance;
-			}
-			else if (distance <= 0.5)
-			{
-				startingpos += distance;
-			}
+    			if (startingpos > pos)
+    			{
+    				distance = startingpos - pos;						
+    			}
+    			else if (startingpos < pos)
+    			{
+    				distance = pos - startingpos;
+    			}
+    			else
+    			{
+    				distance = 0;}
     			
-    	pos += offset;		
+    			if (distance >= 1)
+    			{
+    				int distance2 = (int) distance;
+    				distance = distance - distance2;
+    			}
+    			
+    			if(distance > 0.5)
+    			{
+    				pos = startingpos - (1 - distance);
+    			}
+    			else if (distance <= 0.5 && startingpos > 1)
+    			{
+    				startingpos -= distance;
+    			}
+    			else if (distance <= 0.5)
+    			{
+    				startingpos += distance;
+    			}
+    			
+    			System.out.println ("pos" + pos);
+    	    	System.out.println ("startingpos" + startingpos);
+    			
+    	pos += offset;	
+    	pos = roundOffToFourDigits(pos);
     	wheelMotor.set(pos);								
     	return pos;	
     	//current is that 1=-1
